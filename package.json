@@ -19,14 +19,13 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chai-subset": "1.3.0",
-    "data.either": "1.4.0",
-    "data.maybe": "1.2.2",
     "deep-freeze-node": "1.1.2",
-    "mocha": "3.0.2",
-    "partial.lenses": "3.8.0",
-    "ramda": "0.22.1"
+    "mocha": "3.0.2"
   },
   "dependencies": {
-    "rxjs": "5.0.0-beta.11"
+    "partial.lenses": "3.8.0",
+    "ramda": "0.22.1",
+    "data.either": "1.4.0",
+    "data.maybe": "1.2.2"
   }
 }
