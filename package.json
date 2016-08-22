@@ -1,0 +1,32 @@
+{
+  "name": "dojo-excercises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha source/{**/*,*}.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Valetudox/dojo-excercises.git"
+  },
+  "author": "Viktor Somodi <viktor.somodi@emarsys.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Valetudox/dojo-excercises/issues"
+  },
+  "homepage": "https://github.com/Valetudox/dojo-excercises#readme",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "chai-subset": "1.3.0",
+    "data.either": "1.4.0",
+    "data.maybe": "1.2.2",
+    "deep-freeze-node": "1.1.2",
+    "mocha": "3.0.2",
+    "partial.lenses": "3.8.0",
+    "ramda": "0.22.1"
+  },
+  "dependencies": {
+    "rxjs": "5.0.0-beta.11"
+  }
+}
