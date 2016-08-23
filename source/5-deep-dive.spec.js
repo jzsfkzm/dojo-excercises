@@ -21,7 +21,8 @@ const database = freeze([{
   likes: {
     facebook: 55,
     other: {
-      linkedin: 2
+      linkedin: 2,
+      insta: 5
     }
   }
 }]);
@@ -29,7 +30,7 @@ const database = freeze([{
 describe('deep dive', () => {
 
   it('should increase the given users like path with one', () => {
-    expect(fn(0, database)).to.containSubset([{
+    expect(fn(0, 'linkedin', database)).to.containSubset([{
       likes: {
         other: {
           linkedin: 2
@@ -39,7 +40,7 @@ describe('deep dive', () => {
   });
 
   it('should keep other properties untouched', () => {
-    expect(fn(0, database)).to.containSubset([{
+    expect(fn(0, 'linkedin', database)).to.containSubset([{
       name: 'darth vader',
       address: 'death star',
       likes: {
@@ -52,26 +53,28 @@ describe('deep dive', () => {
   });
 
   it('should not modify other users', () => {
-    expect(fn(0, database)).to.containSubset([{
+    expect(fn(0, 'linkedin', database)).to.containSubset([{
       name: 'luke',
       address: 'Tatooine',
       likes: {
         facebook: 55,
         other: {
-          linkedin: 2
+          linkedin: 2,
+          insta: 5
         }
       }
     }]);
   });
 
   it('should increase with 3 if I call 3 times', () => {
-    expect(fn(1, fn(1, fn(1, database)))).to.containSubset([{
+    expect(fn(1, 'insta', fn(1, 'insta', fn(1, 'insta', database)))).to.containSubset([{
       name: 'luke',
       address: 'Tatooine',
       likes: {
         facebook: 55,
         other: {
-          linkedin: 5
+          insta: 8,
+          linkedin: 2
         }
       }
     }]);
