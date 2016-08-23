@@ -9,7 +9,9 @@ const database = freeze([{
   name: 'darth vader',
   address: 'death star',
   likes: {
+    facebook: 82,
     other: {
+      insta: 99,
       linkedin: 1
     }
   }
@@ -17,6 +19,7 @@ const database = freeze([{
   name: 'luke',
   address: 'Tatooine',
   likes: {
+    facebook: 55,
     other: {
       linkedin: 2
     }
@@ -38,7 +41,13 @@ describe('deep dive', () => {
   it('should keep other properties untouched', () => {
     expect(fn(0, database)).to.containSubset([{
       name: 'darth vader',
-      address: 'death star'
+      address: 'death star',
+      likes: {
+        facebook: 82,
+        other: {
+          insta: 99
+        }
+      }
     }]);
   });
 
@@ -47,6 +56,7 @@ describe('deep dive', () => {
       name: 'luke',
       address: 'Tatooine',
       likes: {
+        facebook: 55,
         other: {
           linkedin: 2
         }
@@ -59,6 +69,7 @@ describe('deep dive', () => {
       name: 'luke',
       address: 'Tatooine',
       likes: {
+        facebook: 55,
         other: {
           linkedin: 5
         }
