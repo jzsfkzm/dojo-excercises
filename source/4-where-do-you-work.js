@@ -7,6 +7,12 @@ const toViewModel = evolve({
   }))
 });
 
+// const { view, over, pipe, lensProp, lensPath, replace, map, head, concat } = require('ramda');
+// const obfuscatePassword = over(lensProp('password'), replace(/./g, '*'));
+// const pickFirstAddress = over(lensProp('addresses'), head);
+// const addUkPrefix = over(lensPath(['addresses', 'zip']), concat('UK'));
+// const toViewModel = pipe(obfuscatePassword, pickFirstAddress, addUkPrefix);
+
 //A megadott tombot alakitsd at ugy, hogy
 //1: a password mezoben minden karakter helyett egy csillag legyen
 //2: Addresses mezoben a legelso address legyen benne

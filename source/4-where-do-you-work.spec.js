@@ -53,7 +53,7 @@ describe('Where do you work?', () => {
     }]);
   });
 
-  it('should give back the first address as addresses', () => {
+  it('should give back the first address as addresses with uk prefix', () => {
     expect(whereDoYouWork(db)).to.containSubset([{
       id: 1,
       addresses: {
