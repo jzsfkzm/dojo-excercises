@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const freeze = require('deep-freeze-node');
-const nextDoor = require('./6-the-girl-next-door');
+const nextDoor = require('./7-the-girl-next-door');
 
 describe('The Girl Next Door', () => {
 

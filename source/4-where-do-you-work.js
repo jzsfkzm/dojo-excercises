@@ -1,4 +1,5 @@
 const { head, map, replace, evolve, pipe, concat } = require('ramda');
+
 const toViewModel = evolve({
   password: replace(/./g, '*'),
   addresses: pipe(head, evolve({

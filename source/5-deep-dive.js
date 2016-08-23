@@ -1,19 +1,12 @@
-const { whereEq } = require('ramda');
-const { modify, get, prop, find, compose, set } = require('partial.lenses');
+const { index, modify, prop, compose } = require('partial.lenses');
+const { inc } = require('ramda');
 
-const streetPath = (id, addressId) => {
-  return compose(
-    find(whereEq({ id: id })),
-    prop('addresses'),
-    find(whereEq({ id: addressId })),
-    prop('street')
+module.exports = (userIndex, database) => {
+  const linkedinPath = compose(
+    index(userIndex),
+    prop('likes'),
+    prop('other'),
+    prop('linkedin')
   );
-};
-
-// az adatbazisban szereplo userhez tartozo cimet at kell irni a megadottra.
-module.exports = ({ id, addressId }, newAddress, database) => {
-  return set(streetPath(id, addressId), newAddress, database);
-};
-
-// over(path, concat('UK'), database);
-// view(path, database);
+  return modify(linkedinPath, inc, database);
+}

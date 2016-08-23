@@ -1,4 +1,5 @@
-const { assocPath } = require('ramda');
+const R = require('ramda');
+const set = R.assocPath;
 
 //A megadott objektum likes.music mezojet allitsd be a megadottra.
-module.exports = assocPath(['likes', 'music']);
+module.exports = set(['likes', 'music']);

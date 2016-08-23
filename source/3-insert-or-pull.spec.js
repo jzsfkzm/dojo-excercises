@@ -19,9 +19,9 @@ describe('Insert Or Pull', () => {
   });
 
   it('should insert the given value if the array doesnt contain it', () => {
-    const array = createSafeBehaviorSubject([1, 2]);
-    insertOrPull(array, 3);
-    expect(array.getValue()).to.eql([1, 2, 3]);
+    const array = createSafeBehaviorSubject([5, 1]);
+    insertOrPull(array, 9);
+    expect(array.getValue()).to.eql([5, 1, 9]);
   });
 
 });

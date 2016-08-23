@@ -1,45 +1,71 @@
+const fn = require('./5-deep-dive');
 const { expect } = require('chai');
 const freeze = require('deep-freeze-node');
-const crazyDeep = require('./5-deep-dive');
+const chai = require('chai');
+const chaiSubset = require('chai-subset');
+chai.use(chaiSubset);
 
-describe('Deep Dive', () => {
+const database = freeze([{
+  name: 'darth vader',
+  address: 'death star',
+  likes: {
+    other: {
+      linkedin: 1
+    }
+  }
+}, {
+  name: 'luke',
+  address: 'Tatooine',
+  likes: {
+    other: {
+      linkedin: 2
+    }
+  }
+}]);
 
-  const db = freeze([{
-    id: 1,
-    name: 'Charles Bronson',
-    addresses: [{
-      id: 88,
-      zip: 1081,
-      street: 'Blaha square'
-    }, {
-      id: 89,
-      zip: 1052,
-      street: 'Realtanoda'
-    }]
-  }, {
-    id: 2,
-    name: 'Darth Vader',
-    addresses: []
-  }]);
+describe('deep dive', () => {
 
-  it('should modify the given street', () => {
-    expect(crazyDeep({ id: 1, addressId: 89 }, 'Death Star', db)).to.eql([{
-      id: 1,
-      name: 'Charles Bronson',
-      addresses: [{
-        id: 88,
-        zip: 1081,
-        street: 'Blaha square'
-      }, {
-        id: 89,
-        zip: 1052,
-        street: 'Death Star'
-      }]
-    }, {
-      id: 2,
-      name: 'Darth Vader',
-      addresses: []
+  it('should increase the given users like path with one', () => {
+    expect(fn(0, database)).to.containSubset([{
+      likes: {
+        other: {
+          linkedin: 2
+        }
+      }
+    }]);
+  });
+
+  it('should keep other properties untouched', () => {
+    expect(fn(0, database)).to.containSubset([{
+      name: 'darth vader',
+      address: 'death star'
+    }]);
+  });
+
+  it('should not modify other users', () => {
+    expect(fn(0, database)).to.containSubset([{
+      name: 'luke',
+      address: 'Tatooine',
+      likes: {
+        other: {
+          linkedin: 2
+        }
+      }
+    }]);
+  });
+
+  it('should increase with 3 if I call 3 times', () => {
+    expect(fn(1, fn(1, fn(1, database)))).to.containSubset([{
+      name: 'luke',
+      address: 'Tatooine',
+      likes: {
+        other: {
+          linkedin: 5
+        }
+      }
     }]);
   });
 
 });
+
+
